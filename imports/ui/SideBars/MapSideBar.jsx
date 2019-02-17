@@ -37,8 +37,11 @@ export default class MapSideBar extends Component
     render()
     {
         return(
-            <div id='map-side-bar-container' style = {{width : "50%", height: "90vh", position: "absolute", zIndex: 1000000000, right: 0, textAlign : "right", marginRight : "20px"}}>
-                <h1>NEARBY REQUESTS</h1>
+            <div id='map-side-bar-container' style = {{width : "30%", 
+            height: "90vh", position: "absolute", zIndex: 1000000000, 
+            right: 0, textAlign : "right", marginRight : "20px", backgroundColor:'rgba(255,255,255,0.5)'}}>
+                <h1 style={{textAlign:'center'}}>NEARBY REQUESTS</h1>
+                <div style={{textAlign:'center'}}>________________</div>
                 {this.state.data !== [] && this.state.data.map((order, index) => {
                     return (
                     <div id='wrapper' key = {index}>
