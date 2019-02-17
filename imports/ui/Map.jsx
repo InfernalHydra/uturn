@@ -23,15 +23,35 @@ async function coordsToAddress(lat, lng)
 // coordsToAddress(32.8359936, -97.3160448);
 class Map extends Component
 {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            centerLat : 0,
+            centerLng : 0
+        };
+    }
+
+    componentWillMount()
+    {
+        // console.log(window.location.search);
+        let foo = window.location.search.split(",");
+        // console.log(foo);
+        let a = parseFloat(foo[0].substr(6));
+        let b = parseFloat(foo[1].substr(5));
+        // this.setState({centerLat : a, centerLng : b}, () => {
+        //     console.log(this.state);
+        // });
+    }
     render()
     {
         if(!this.props.isReady)
         {
             return <div>loading...</div>
         }
-        console.log(this.props.orders);
+        // console.log(this.props.orders);
         //console.log(this.props.points.map(pick('lat', 'lng')));
-        // Meteor.call('points.findNearby', 32.8359936, -97.3160448);        
+        // Meteor.call('points.findNearby', 32.8359936, -97.3160448);
         return(
             <div id="map-container" style={{height : "90vh"}}>
                 <GoogleMapReact
