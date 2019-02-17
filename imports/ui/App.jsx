@@ -15,6 +15,8 @@ import { Button, ExpansionPanelSummary } from '@material-ui/core';
 import {withTracker} from 'meteor/react-meteor-data'
 
 import Home from './Home';
+import Register from './Register';
+import Login from './Login';
 
 const muiTheme = createMuiTheme({
     typography: {        
@@ -49,11 +51,16 @@ const muiTheme = createMuiTheme({
 
     login()
     {
-        Meteor.loginWithFacebook((err) => {
-            if(err) alert(err);
-        });
+        // Meteor.loginWithFacebook((err) => {
+        //     if(err) alert(err);
+        // });
     }
-
+    handleLogout()
+    {
+        Meteor.logout(function(err) {
+            if(err) alert(err);
+        })
+    }
     render()
     {
         return(
@@ -62,13 +69,17 @@ const muiTheme = createMuiTheme({
                 <div id = "content">
                     <AppBar>
                         <Toolbar color = 'secondary' style = {{display : 'flex', flexFlow : 'row nowrap', justifyContent : "space-between"}}>
-                            pass
+                            {Meteor.user() ? <Button onClick = {this.handleLogout.bind(this)}>Logout</Button> : null}
+                            {!Meteor.user() ? <NavLink to='/register'><Button>Register</Button></NavLink> : null}
+                            {!Meteor.user() ? <NavLink to='/login'><Button>Login</Button></NavLink> : null}
                         </Toolbar>
                     </AppBar>
 
                     <div id = "main-content" style = {{paddingTop : '50px', fontFamily : "'Barlow Condensed', sans-serif"}}>
                         <Switch>
                             <Route exact path = '/' component = {Home}/>
+                            <Route path = '/register' component = {() => <Register currentUser={this.props.currentUser}/>}/> 
+                            <Route path = '/login' component = {() => <Login currentUser={this.props.currentUser}/>}/>
                         </Switch>
                     </div>
                 </div>
@@ -78,4 +89,24 @@ const muiTheme = createMuiTheme({
     }
 }
 
-export default App;
+export default withTracker(() => {
+    if(!Meteor.loggingIn()){
+        if(!Meteor.userId()){
+          return{
+            currentUser: null,
+            ready: true
+          }
+        }
+        var subscription = Meteor.subscribe('user.byId', Meteor.userId());
+      }else{
+        return {
+          currentUser: null,
+          ready: false
+        }
+      }
+    
+      return {
+        currentUser: Meteor.users.findOne(Meteor.userId()),
+        ready: subscription.ready()
+      }
+})(App);

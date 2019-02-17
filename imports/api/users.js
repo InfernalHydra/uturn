@@ -10,5 +10,5 @@ Users.deny({
     remove() {return true;},
 });
 
-Meteor.methods({
+Meteor.methods({    
 });

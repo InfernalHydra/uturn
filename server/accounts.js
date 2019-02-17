@@ -20,3 +20,11 @@ Accounts.onCreateUser((user) => {
     user.balance = 0;
     return user;
 })
+
+Meteor.publish("user", (username) => {
+  return Meteor.users.find({username: username}, {fields: userFields});
+});
+
+Meteor.publish("user.byId", (userId) => {
+  return Meteor.users.find(userId, {fields: userFields})
+});
