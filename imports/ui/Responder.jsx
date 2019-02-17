@@ -11,11 +11,20 @@ import { withTheme } from '@material-ui/core/styles';
 class Responder extends Component {
     constructor (props) {
         super(props);
+        this.state = {}
         this.send = this.send.bind(this)
         this.location = this.location.bind(this)
         this.handleChange = this.handleChange.bind(this);
 
     }
+    componentDidMount () {
+        anime({
+            targets:'#g',
+            translateY: '0%',
+            delay:anime.stagger(500, {start:500}),
+            easing: 'easeOutQuad'
+        })
+    }    
     send() {
         console.log(this.state) 
         let taddress = this.state.add + ', ' + this.state.city + ", " + this.state.state;
@@ -61,19 +70,28 @@ class Responder extends Component {
         console.log(window.location.search)
         return (
             <Grid style={{top:'30%'}} container justify='center' spacing={0}>                
-                <Grid item xs={4} style={{height:'100vh', border: '1px solid black'}}>
-                    <h1 style={{textAlign:'center'}}>
-                        Current Location
-                    </h1>
-                    {this.props.coords?<Button variant="outlined" onClick={this.location} style={{width:'100%'}}>Get Location Via GPS</Button>:<div></div>}                    
+                <Grid id="g" item xs={4} style={{height:'90vh', border: '1px solid black', backgroundColor:'white', transform:'translateY(-100%)'}}>
+                    <div style={{width:'80%', margin:'50% auto'}}>
+                        <h1 style={{textAlign:'center'}}>
+                            Current Location
+                        </h1>
+                        {this.props.coords?<Button variant="outlined" onClick={this.location} style={{width:'100%'}}>Get Location Via GPS</Button>:<div></div>}                                        
+                        {this.state.coords?
+                            <div>                                
+                                Coordinates Received!
+                            </div>
 
-                    <div> Location Res </div>
+                            :<div/>}
+                    </div>
+                    
                     
                 </Grid>
-                <Grid item xs={4} style={{height:'100vh', border: '1px solid black'}}>
-                    <div>
-                        
-                    <div style={{width:'100'}}>                                                    
+                <Grid id="g" item xs={4} style={{height:'90vh', border: '1px solid black', backgroundColor:'#EEEEEE', transform:'translateY(-100%)'}}>                    
+                    
+                    <div style={{width:'80%', margin:'50% auto'}}>                                                    
+
+                        <h1 style={{textAlign:'center'}}>Destination</h1>
+
                         <TextField
                         label="Address"                                
                         type="text"
@@ -117,14 +135,15 @@ class Responder extends Component {
                             fullWidth={true}
 
                             onChange={this.handleChange}
-                        />                                                            
-                                                                                                    
-                    </div>
+                        />                                                                                                                                                                                    
                     </div>
                 </Grid>
-                <Grid item xs={4} style={{height:'100vh', border: '1px solid black', backgroundColor: 'white'}}>
-                    <div>
-                        <Button onClick={this.send}>Submit</Button>
+                <Grid id='g' item xs={4} style={{height:'90vh', border: '1px solid black', backgroundColor: 'white', transform:'translateY(-100%)'}}>
+                    <div style={{width:'80%', margin:'50% auto'}}>                        
+                        <h1 style={{textAlign:'center'}}>
+                            Search For Nearby Requests
+                        </h1>
+                        <Button variant="outlined" onClick={this.send} style={{width:'100%',}}>Submit</Button> 
                     </div>
                 </Grid>
             </Grid>
