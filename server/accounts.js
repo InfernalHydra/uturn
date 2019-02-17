@@ -16,9 +16,9 @@ Accounts.validateNewUser((user) => {
       return true;
 });
 
-Accounts.onCreateUser((user) => {
+Accounts.onCreateUser((options, user) => {
     user.balance = 0;
-    user.car ={};
+    user.car = options.car;
     return user;
 })
 

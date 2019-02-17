@@ -48,7 +48,6 @@ export default class Register extends Component
             carColor,
             success
         } = this.state;
-        console.log(this.state);
 
         if(!termsInputValue) {
             alert("Please agree to the terms and conditions.");
@@ -83,6 +82,8 @@ export default class Register extends Component
             password,
             car: {licenseNumber, insuranceNumber, carModel, carColor}
           };
+          console.log(option);
+          
           Accounts.createUser(option, function createUserCallback(err) {
             if(err){
               switch(err.error) {
