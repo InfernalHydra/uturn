@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { Cars } from '../imports/api/cars';
 
-function insertLink(title, url) {
-  Links.insert({ title, url, createdAt: new Date() });
-}
 
 Meteor.startup(() => {
 });
