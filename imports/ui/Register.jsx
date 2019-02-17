@@ -76,11 +76,10 @@ export default class Register extends Component
           }
 
           var option = {
-            profile : {fullName},
+            profile : {fullName, car: {licenseNumber, insuranceNumber, carModel, carColor}, balance : 0},
             username,
             email,
             password,
-            car: {licenseNumber, insuranceNumber, carModel, carColor}
           };
           console.log(option);
           

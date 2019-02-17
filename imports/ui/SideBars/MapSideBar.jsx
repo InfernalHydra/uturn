@@ -25,7 +25,7 @@ export default class MapSideBar extends Component
             }
             else
             {
-                console.log(res);
+                //console.log(res);
                 self.setState({data : res});
             }
         })

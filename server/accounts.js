@@ -17,15 +17,15 @@ Accounts.validateNewUser((user) => {
 });
 
 Accounts.onCreateUser((options, user) => {
-    user.balance = 0;
-    user.car = options.car;
+    console.log(user);
     return user;
 })
+const userFields = {_id: 1, emails: 1, profile: 1, username: 1, balance: 1, car : 1};
 
-Meteor.publish("user", (username) => {
-  return Meteor.users.find({username: username}, {fields: userFields});
+Meteor.publish("user", () => {
+  return Meteor.users.find({}, {fields: userFields});
 });
 
 Meteor.publish("user.byId", (userId) => {
-  return Meteor.users.find(userId, {fields: userFields})
+  return Meteor.users.find({_id : userId}, {fields: userFields})
 });
