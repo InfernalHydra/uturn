@@ -1,5 +1,13 @@
 body {
   padding: 10px;
-  background-color: #03cea4;
-  font-family: sans-serif;
+  background: linear-gradient(-45deg, #03cea4 48%, #05BA95 50%)/*#03cea4*/;
+  font-family: sans-serif;  
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent; 
+  border-left:20px solid red; 
+  display: block;
 }
