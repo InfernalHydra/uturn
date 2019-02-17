@@ -11,14 +11,9 @@
     "@babel/runtime": "^7.1.5",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-<<<<<<< Updated upstream
     "animejs": "^3.0.1",
     "bcrypt": "^3.0.4",
     "google-map-react": "^1.1.2",
-=======
-    "bcrypt": "^3.0.4",
-    "animejs": "^3.0.1",
->>>>>>> Stashed changes
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",

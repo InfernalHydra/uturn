@@ -72,8 +72,10 @@ const muiTheme = createMuiTheme({
                 <div id = "content">
                     <AppBar>
                         <Toolbar color = 'secondary' style = {{display : 'flex', flexFlow : 'row nowrap', justifyContent : "space-between"}}>
+                        
                             {Meteor.user() ? <Button onClick = {this.handleLogout.bind(this)}>Logout</Button> : null}
-                            {!Meteor.user() ? <NavLink to='/register'><Button>Register</Button></NavLink> : null}
+                            {!Meteor.user() ? <NavLink to='/register'><Button>Register</Button></NavLink> : null}          
+                            <Typography variant="h6" color="inherit" onClick={()=> {window.location='/'}}>U Turn</Typography>                  
                             {!Meteor.user() ? <NavLink to='/login'><Button>Login</Button></NavLink> : null}
                         </Toolbar>
                     </AppBar>
