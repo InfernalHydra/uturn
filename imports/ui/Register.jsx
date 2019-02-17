@@ -17,6 +17,10 @@ export default class Register extends Component
             email: "",
             password: "",
             passwordConfirm: "",
+            licenseNumber: "",
+            insuranceNumber: "",
+            carModel: "",
+            carColor: "",
             termsInputValue: false,
             success : false,
         }
@@ -38,6 +42,10 @@ export default class Register extends Component
             password,
             passwordConfirm,
             termsInputValue,
+            licenseNumber,
+            insuranceNumber,
+            carModel,
+            carColor,
             success
         } = this.state;
         console.log(this.state);
@@ -73,6 +81,7 @@ export default class Register extends Component
             username,
             email,
             password,
+            car: {licenseNumber, insuranceNumber, carModel, carColor}
           };
           Accounts.createUser(option, function createUserCallback(err) {
             if(err){
@@ -101,9 +110,15 @@ export default class Register extends Component
     }
     render()
     {
-        if(this.state.success) <Redirect to='/' />
-        if(Meteor.user()) <Redirect to='/' />
-        
+        if(this.state.success)
+        {
+            return <Redirect to="/" />
+        }
+        if(this.props.currentUser)
+        {
+            return <Redirect to="/" />
+        }
+
         return(
             <div id = 'register-container' style = {{width : '80%', margin : 'auto'}}>
                 <h1 style={{textAlign : "center"}}>Register for an Account</h1>
@@ -152,6 +167,35 @@ export default class Register extends Component
                         fullWidth
                         error={this.state.passConfirmError}
                         helperText={this.state.passConfirmError}
+                    >
+                    </TextField>
+                    <h2>Car Information</h2>
+                    <TextField
+                        label="License Plate Number"
+                        value={this.state.licenseNumber}
+                        onChange={this.handleChange.bind(this, 'licenseNumber')}
+                        fullWidth
+                    >
+                    </TextField>
+                    <TextField
+                        label="Insurance Number"
+                        value={this.state.insuranceNumber}
+                        onChange={this.handleChange.bind(this, 'insuranceNumber')}
+                        fullWidth
+                    >
+                    </TextField>
+                    <TextField
+                        label="Car Model"
+                        value={this.state.carModel}
+                        onChange={this.handleChange.bind(this, 'carModel')}
+                        fullWidth
+                    >
+                    </TextField>
+                    <TextField
+                        label="Car Color"
+                        value={this.state.carColor}
+                        onChange={this.handleChange.bind(this, 'carColor')}
+                        fullWidth
                     >
                     </TextField>
                     <div style = {{display : 'flex'}}>

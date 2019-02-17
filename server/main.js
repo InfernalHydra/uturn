@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Cars } from '../imports/api/cars';
-
+import { Order } from '../imports/api/order';
 
 Meteor.startup(() => {
 });

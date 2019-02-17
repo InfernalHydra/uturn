@@ -26,13 +26,43 @@ export default class Register extends Component
     }
     handleSubmit()
     {
-
-
+        Meteor.loginWithPassword(this.state.username, this.state.password, (err) => {
+          if(err){
+            this.setState({
+              passwordError: "",
+              usernameError: ""
+            })
+            switch(err.reason) {
+              case "Incorrect password":
+                this.setState({
+                  passwordError: err.reason
+                });
+                break;
+              case "User not found":
+                this.setState({
+                  usernameError: err.reason
+                });
+                break;
+              default:
+                alert(err);
+            }
+          }else{
+            this.setState({
+              success: true
+            })
+          }
+        });
     }
     render()
     {
-        if(this.state.success) <Redirect to='/' />
-        if(Meteor.user()) <Redirect to='/' />
+        if(this.state.success)
+        {
+            return <Redirect to='/' />
+        }
+        if(this.props.currentUser)
+        {
+            return <Redirect to='/' />
+        }
         
         return(
             <div id = 'register-container' style = {{width : '80%', margin : 'auto'}}>
@@ -56,7 +86,7 @@ export default class Register extends Component
                         helperText={this.state.passError}
                     >
                     </TextField>
-                    <Button variant="contained" color="primary" onClick = {this.handleSubmit.bind(this)}>Register</Button>
+                    <Button variant="contained" color="primary" onClick = {this.handleSubmit.bind(this)}>Login</Button>
             </div>
         );
     }
