@@ -41,7 +41,7 @@ class SideResponder extends Component {
     }
     render() {
         return (
-            <div id="resbar" style={{transformOrigin: '100% 50%', transform:'scaleX(0)', color: 'rgba(0,0,0,0)', height:'90vh', width:'50vw', left:'-2.2%', position:"absolute", backgroundColor:"blue"}}>
+            <div id="resbar" style={{transformOrigin: '100% 50%', transform:'scaleX(0)', color: 'rgba(0,0,0,0)', height:'90vh', width:'50vw', left:'-2.2%', position:"absolute", backgroundColor:"#345995"}}>
                 This is some stuff;
             </div>
         )    

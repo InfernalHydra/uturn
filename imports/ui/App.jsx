@@ -17,7 +17,7 @@ import {withTracker} from 'meteor/react-meteor-data'
 import Home from './Home';
 import Register from './Register';
 import Login from './Login';
-
+import Responder from './Responder';
 const muiTheme = createMuiTheme({
     typography: {        
         fontFamily: "'Barlow Condensed', sans-serif",
@@ -80,6 +80,7 @@ const muiTheme = createMuiTheme({
                             <Route exact path = '/' component = {Home}/>
                             <Route path = '/register' component = {() => <Register currentUser={this.props.currentUser}/>}/> 
                             <Route path = '/login' component = {() => <Login currentUser={this.props.currentUser}/>}/>
+                            <Route path = '/res' component = {Responder}/>
                         </Switch>
                     </div>
                 </div>

@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { TextField, Button } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid';
+
 import anime from 'animejs';
 
 class SideDriver extends Component {
@@ -15,7 +18,6 @@ class SideDriver extends Component {
         if (nextProps.show != this.props.show) {
             console.log('up')
             let timeline = anime.timeline({
-                targets:'#dribar',
                 easing: 'easeInOutQuad',
                 duration:1000,
                 complete: (anim) => {
@@ -24,24 +26,25 @@ class SideDriver extends Component {
             });
             if (nextProps.show) {
                 timeline.add({
+                    targets:'#dribar',
                     width: '50vw',
                 })
                 timeline.add({
-                    color: 'rgba(0, 0, 0, 1)',
+                    targets:'#driform',
+                    opacity: 1,
                 })
             }
             else {
                 timeline.add({
-                    color: 'rgba(0, 0, 0, 0)',
-                })
+                    targets:'#driform',
+                    opacity: 0,
+                })  
                 timeline.add({
+                    targets:'#dribar',
                     width: '0vw',
                 })
                 
             }
-            
-            
-                        
             return true;
         }
         return true;
@@ -50,8 +53,29 @@ class SideDriver extends Component {
         
         
             return (
-                <div id="dribar" style={{color: 'rgba(0,0,0,0)', height:'90vh', width:'0vw', left:'47.8%', position:"absolute", backgroundColor:"#8E0202"}}>
-                    This is some stuff;
+                <div id="dribar" style={{color: 'rgba(0,0,0,0)', height:'90vh', width:'0vw', left:'47.8%', position:"absolute", backgroundColor:"#ff4365"}}>
+                    <div id='driform' style={{opacity:0}}>
+                        <Grid container alignItems='center' spacing={8} style={{padding: '10px'}}>
+                            <Grid item xs = {12}>
+                                <TextField
+                                        style = {{width : '250px'}}
+                                        id = 'title'
+                                        label = "Title"
+                                        type = 'text'
+                                ></TextField>
+                            </Grid>
+                            <Grid item xs = {12}>
+                                <TextField
+                                        style = {{width : '250px'}}
+                                        id = 'title'
+                                        label = "Title"
+                                        type = 'text'
+                                ></TextField>
+                            </Grid>    
+                        </Grid>
+                        
+                    </div>
+                    
                 </div>
             )        
         

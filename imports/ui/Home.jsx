@@ -13,20 +13,18 @@ class Home extends Component {
         this.state = {res:false, dri:false};
     }
     openRes() {
-        this.setState({res:!this.state.res});        
+        this.setState({res:!this.state.res}); 
+        window.location = '/res'       
     }    
     openDri() {
         this.setState({dri:!this.state.dri});        
+        window.location = '/dri'       
     }    
     render() {
         let theme = this.props.theme.palette;
         console.log(this.state);
         return (
-            <div>
-                <Grid container spacing={0} style={{position:'absolute'}}>
-                    <SideResponder show={this.state.res}></SideResponder>
-                    <SideDriver show={this.state.dri}></SideDriver>
-                </Grid>
+            <div>                
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={12} >
                         <p style={{textAlign:'center'}}>
