@@ -38,7 +38,7 @@ Meteor.methods({
         console.log(currUser);
         Orders.insert({car : currUser.car, location, destination, userID : this.userId});
     },
-    'orders.findNearMe'(lat, lng)
+    'orders.findNearMe'(lat, lng, lat2, lng2)
     {
         check(lat, Number);
         check(lng, Number);
@@ -46,7 +46,7 @@ Meteor.methods({
         Orders.find({}).fetch().forEach((order) => {
             // console.log(order);
             var foo = getDistanceFromLatLonInMi(lat, lng, order.location.lat, order.location.lng);
-            var bar = getDistanceFromLatLonInMi(lat, lng, order.destination.lat, order.destination.lng);
+            var bar = getDistanceFromLatLonInMi(lat2, lng2, order.destination.lat, order.destination.lng);
             order.weight = (foo + bar);
             ret.push(order);
         })

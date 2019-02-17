@@ -18,7 +18,7 @@ export default class MapSideBar extends Component
     tick()
     {
         var self = this;
-        Meteor.call('orders.findNearMe', this.props.centerLat, this.props.centerLng, (err, res) => {
+        Meteor.call('orders.findNearMe', this.props.centerLat, this.props.centerLng, this.props.otherLat, this.props.otherLng, (err, res) => {
             if(err)
             {
                 alert(err);
@@ -39,17 +39,21 @@ export default class MapSideBar extends Component
         return(
             <div id='map-side-bar-container' style = {{width : "30%", 
             height: "90vh", position: "absolute", zIndex: 1000000000, 
-            right: 0, textAlign : "right", marginRight : "20px", backgroundColor:'rgba(255,255,255,0.5)'}}>
+            right: 0, textAlign : "left", marginRight : "20px", backgroundColor:'rgba(255,255,255,0.5)'}}>
                 <h1 style={{textAlign:'center'}}>NEARBY REQUESTS</h1>
-                <div style={{textAlign:'center'}}>________________</div>
+                <div style={{textAlign:'center'}}>___________________</div>
+
                 {this.state.data !== [] && this.state.data.map((order, index) => {
                     return (
-                    <div id='wrapper' key = {index}>
-                        <div>{"License Number: " + order.car.licenseNumber}</div>
-                        <div>{"Insurance Number: " + order.car.insuranceNumber}</div>
+                    <div style={{margin:'auto', padding:'5px', border:'solid black', borderTop:'1px', borderBottom:'1px', borderRadius:'2px'}} id='wrapper' key = {index}>
                         <div>{"Car Model: " + order.car.carModel}</div>
                         <div>{"Car Color: " + order.car.carColor}</div>
+                        <br/>
+                        <div>{"License Number: " + order.car.licenseNumber}</div>
                         <div>{"Distance Saved: " + order.weight + " mi"}</div>
+                        <br/>
+                        <div style={{textAlign:'center'}}>________________</div>
+
                     </div>
                     );
                 })}

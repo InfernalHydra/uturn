@@ -28,7 +28,9 @@ class Map extends Component
         super(props)
         this.state = {
             centerLat : 0,
-            centerLng : 0
+            centerLng : 0,
+            otherLat : 0,
+            otherLng : 0,
         };
     }
 
@@ -36,10 +38,12 @@ class Map extends Component
     {
         // console.log(window.location.search);
         let foo = window.location.search.split(",");
-        // console.log(foo);
+        console.log(foo);
         let a = parseFloat(foo[0].substr(6));
         let b = parseFloat(foo[1].substr(5));
-        this.setState({centerLat : a, centerLng : b}, () => {
+        let c = parseFloat(foo[2].substr(5));
+        let d = parseFloat(foo[3].substr(4));
+        this.setState({centerLat : a, centerLng : b, otherLat : c, otherLng : d}, () => {
             console.log(this.state);
         });
     }
@@ -54,7 +58,7 @@ class Map extends Component
         // Meteor.call('points.findNearby', 32.8359936, -97.3160448);
         return(
             <div id="map-container" style={{height : "90vh"}}>
-                <MapSideBar centerLat = {this.state.centerLat} centerLng = {this.state.centerLng}/>
+                <MapSideBar centerLat = {this.state.centerLat} centerLng = {this.state.centerLng} otherLat = {this.state.otherLat} otherLng = {this.state.otherLng}/>
                 <GoogleMapReact
                     bootstrapURLKeys={{key : "AIzaSyDwycw2h_XzL94n0bSXRxbXX8rrSXOaD3w"}}
                     defaultCenter = {this.props.center}
