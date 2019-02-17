@@ -44,11 +44,12 @@ Meteor.methods({
         check(lng, Number);
         var ret = [];
         Orders.find({}).fetch().forEach((order) => {
-            if(getDistanceFromLatLonInMi(lat, lng, order.location.lat, order.location.lng) < 5)
-            {
-                ret.push(order);
-            }
+            // console.log(order);
+            var foo = getDistanceFromLatLonInMi(lat, lng, order.location.lat, order.location.lng);
+            //console.log(foo);
+            ret.push(order);
         })
-        return order;
+        // console.log(ret)
+        return ret.slice(0, 5);
     }
 });
