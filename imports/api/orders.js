@@ -46,10 +46,16 @@ Meteor.methods({
         Orders.find({}).fetch().forEach((order) => {
             // console.log(order);
             var foo = getDistanceFromLatLonInMi(lat, lng, order.location.lat, order.location.lng);
-            //console.log(foo);
+            var bar = getDistanceFromLatLonInMi(lat, lng, order.destination.lat, order.destination.lng);
+            order.weight = (foo + bar);
             ret.push(order);
         })
         // console.log(ret)
-        return ret.slice(0, 5);
+        console.log(ret.sort(function(a,b) {
+            return a.weight - b.weight;
+        }));
+        return ret.sort(function(a,b) {
+            return a.weight - b.weight;
+        }).slice(0, 5);
     }
 });

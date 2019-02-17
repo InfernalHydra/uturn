@@ -45,7 +45,11 @@ export default class MapSideBar extends Component
                 {this.state.data !== [] && this.state.data.map((order, index) => {
                     return (
                     <div id='wrapper' key = {index}>
-                        <div>{"lat: " + order.location.lat}</div>
+                        <div>{"License Number: " + order.car.licenseNumber}</div>
+                        <div>{"Insurance Number: " + order.car.insuranceNumber}</div>
+                        <div>{"Car Model: " + order.car.carModel}</div>
+                        <div>{"Car Color: " + order.car.carColor}</div>
+                        <div>{"Distance Saved: " + order.weight + " mi"}</div>
                     </div>
                     );
                 })}
