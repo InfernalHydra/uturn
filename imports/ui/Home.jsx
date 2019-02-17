@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withTheme } from '@material-ui/core/styles';
+import {BrowserRouter, Switch, Route, NavLink, Redirect} from 'react-router-dom'
 
 import SideDriver from './SideBars/SideDriver';
 import SideResponder from './SideBars/SideResponder';
@@ -12,14 +13,6 @@ class Home extends Component {
         super(props);        
         this.state = {res:false, dri:false};
     }
-    openRes() {
-        this.setState({res:!this.state.res}); 
-        window.location = '/res'       
-    }    
-    openDri() {
-        this.setState({dri:!this.state.dri});        
-        window.location = '/dri'       
-    }    
     render() {
         let theme = this.props.theme.palette;
         console.log(this.state);
@@ -33,9 +26,11 @@ class Home extends Component {
                         
                     </Grid>
                     <Grid item xs={6} style={{height:'25vh', textAlign:'center'}}>
-                        <div id='driver' onClick={this.openDri.bind(this)}style={{border: "1px solid " + theme.primary.main}}>
-                            Driver
-                        </div>
+                        <NavLink to='/driver'>
+                            <div id='driver' style={{border: "1px solid " + theme.primary.main}}>
+                                Driver
+                            </div>
+                        </NavLink>
                     </Grid>
                     <Grid item xs = {6}></Grid>
                     <Grid item xs = {12} style={{height:'25vh'}}>
@@ -45,9 +40,12 @@ class Home extends Component {
                     </Grid>
                     <Grid item xs = {6}></Grid>
                     <Grid  item xs={6} style={{height:'20vh', textAlign:'center'}}>
-                        <div onClick={this.openRes.bind(this)} style={{border: "1px solid " + theme.secondary.main}}>
-                            Responder
-                        </div>
+                        <NavLink to='/res'>
+                            <div style={{border: "1px solid " + theme.secondary.main}}>
+                                Responder
+                            </div>
+                        </NavLink>
+
                     </Grid>
                 </Grid>
         

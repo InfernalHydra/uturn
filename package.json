@@ -11,22 +11,17 @@
     "@babel/runtime": "^7.1.5",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-<<<<<<< HEAD
-    "bcrypt": "^3.0.4",
-=======
     "animejs": "^3.0.1",
-<<<<<<< Updated upstream
->>>>>>> c309e1b7943141cb89a97f304d1a2cdd83384079
-=======
     "bcrypt": "^3.0.4",
->>>>>>> Stashed changes
+    "google-map-react": "^1.1.2",
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-geocode": "^0.1.2",
     "react-geolocated": "^2.4.1",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "react-svg": "^7.2.6"
   },
   "meteor": {
     "mainModule": {

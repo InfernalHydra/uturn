@@ -12,10 +12,12 @@ if(Meteor.isServer)
 }
 
 Meteor.methods({
-    'orders.add'(car, position)
+    'orders.add'(location, destination)
     {
-        check(car, Object);
         check(position, Object);
-        Orders.insert({car, position, userID : this.userId});
+        check(destination, Object);
+        const currUser = Meteor.users.find({_id : this.userId});
+        console.log(currUser);
+        Orders.insert({car : currUser.car, location, destination, userID : this.userId});
     }
 });
