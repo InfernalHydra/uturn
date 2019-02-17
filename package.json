@@ -11,7 +11,11 @@
     "@babel/runtime": "^7.1.5",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+<<<<<<< HEAD
     "bcrypt": "^3.0.4",
+=======
+    "animejs": "^3.0.1",
+>>>>>>> c309e1b7943141cb89a97f304d1a2cdd83384079
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
